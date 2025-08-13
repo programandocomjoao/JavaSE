@@ -2,8 +2,8 @@ package controle;
 
 import java.util.Scanner;
 
-import dominio.PessoaFisica;
-import dominio.PessoaJuridica;
+import modelo.PessoaFisica;
+import modelo.PessoaJuridica;
 
 public class ControleCliente {
 	public static void main(String[] args) {
