@@ -1,0 +1,26 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Inserir {
+	static final String URL = "jdbc:mysql://localhost/petshop";
+	
+	public Inserir() {
+		String sql = "INSERT INTO animal(nome, raca) VALUES('Luana', 'Street Dog')";
+		
+		try {
+			Connection conexao = DriverManager.getConnection(URL, "root", "");
+			PreparedStatement operacao = conexao.prepareStatement(sql);
+			operacao.execute();
+			
+			System.out.println("Animal inserido com sucesso!");
+			conexao.close();
+		}
+		catch(SQLException e) {
+			System.out.println("Erro de conexão");
+		}
+	}
+}
