@@ -85,6 +85,9 @@ public class Mapa extends JFrame {
 					btnNewButton_2_1.setIcon(new ImageIcon(Mapa.class.getResource("/imagens/Robotnik.png")));
 				else if(personagem == 0)
 					btnNewButton_2_1.setIcon(new ImageIcon(Mapa.class.getResource("")));
+			
+				Pergunta pergunta = new Pergunta(1);
+				pergunta.setVisible(true);
 			}
 		});
 		btnNewButton_2_1.setBounds(77, 177, 40, 40);
@@ -99,6 +102,9 @@ public class Mapa extends JFrame {
 					btnNewButton_2_2.setIcon(new ImageIcon(Mapa.class.getResource("/imagens/Robotnik.png")));
 				else if(personagem == 0)
 					btnNewButton_2_2.setIcon(new ImageIcon(Mapa.class.getResource("")));
+			
+				Pergunta pergunta = new Pergunta(2);
+				pergunta.setVisible(true);
 			}
 		});
 		btnNewButton_2_2.setBounds(127, 177, 40, 40);
@@ -113,6 +119,9 @@ public class Mapa extends JFrame {
 					btnNewButton_2_3.setIcon(new ImageIcon(Mapa.class.getResource("/imagens/Robotnik.png")));
 				else if(personagem == 0)
 					btnNewButton_2_3.setIcon(new ImageIcon(Mapa.class.getResource("")));
+			
+				Pergunta pergunta = new Pergunta(3);
+				pergunta.setVisible(true);
 			}
 		});
 		btnNewButton_2_3.setBounds(178, 177, 40, 40);
