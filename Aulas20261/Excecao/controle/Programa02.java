@@ -2,7 +2,7 @@ package controle;
 
 import java.util.Scanner;
 
-public class Programa01 {
+public class Programa02 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
@@ -15,7 +15,7 @@ public class Programa01 {
 			System.out.println("Divisão: " + (n1 / n2));
 		}
 		catch(ArithmeticException e) {
-			System.out.println("Não é possível dividir por zero!");
+			System.out.println("Erro: " + e.getMessage());
 		}
 		
 		System.out.print("***** FIM DO PROGRAMA *****");
