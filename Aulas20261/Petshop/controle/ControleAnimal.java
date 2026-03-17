@@ -20,11 +20,14 @@ public class ControleAnimal {
 		return animal;
 	}
 	
-	public void alterarAnimal() {
-		
+	public void alterarAnimal(int id, String nome, String especie, String raca) {
+		animal.setNome(nome);
+		animal.setEspecie(especie);
+		animal.setRaca(raca);
+		daoAnimal.alterar(id, animal);
 	}
 	
-	public void excluirAnimal() {
-		
+	public void excluirAnimal(int id) {
+		daoAnimal.excluir(id);
 	}
 }
