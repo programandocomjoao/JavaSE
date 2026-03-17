@@ -68,11 +68,13 @@ public class DaoAnimal {
 			PreparedStatement operacao = conexao.prepareStatement(sql);
 			ResultSet resultado = operacao.executeQuery();
 			
-			resultado.first();
-			
-			animal.setNome((String)resultado.getObject(2));
-			animal.setEspecie((String)resultado.getObject(3));
-			animal.setRaca((String)resultado.getObject(4));
+			if(resultado.first()) {
+				animal.setNome((String)resultado.getObject(2));
+				animal.setEspecie((String)resultado.getObject(3));
+				animal.setRaca((String)resultado.getObject(4));
+			}
+			else
+				animal = null;
 			
 			conexao.close();
 			operacao.close();
@@ -90,11 +92,72 @@ public class DaoAnimal {
 		return animal;
 	}
 	
-	public void alterar() {
+	public void alterar(int id, Animal animal) {
+		String sql = "UPDATE animal SET nome = ?, especie = ?, raca = ? WHERE id = " + id;
 		
+		try {
+			Properties props = new Properties();
+			FileInputStream arquivo = new FileInputStream("db.properties");
+			props.load(arquivo);
+			
+			String driver = props.getProperty("db.driver");
+			String url = props.getProperty("db.url");
+			String usuario = props.getProperty("db.usuario");
+			String senha = props.getProperty("db.senha");
+			
+			//Class.forName(driver);
+			Connection conexao = DriverManager.getConnection(url, usuario, senha);
+			PreparedStatement operacao = conexao.prepareStatement(sql);
+			operacao.setString(1, animal.getNome());
+			operacao.setString(2, animal.getEspecie());
+			operacao.setString(3, animal.getRaca());
+			operacao.execute();
+			
+			System.out.println("Animal alterado com sucesso!");
+			conexao.close();
+			operacao.close();
+		}
+		catch(SQLException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
 	}
 	
-	public void excluir() {
+	public void excluir(int id) {
+		String sql = "DELETE FROM animal WHERE id = " + id;
 		
+		try {
+			Properties props = new Properties();
+			FileInputStream arquivo = new FileInputStream("db.properties");
+			props.load(arquivo);
+			
+			String driver = props.getProperty("db.driver");
+			String url = props.getProperty("db.url");
+			String usuario = props.getProperty("db.usuario");
+			String senha = props.getProperty("db.senha");
+			
+			//Class.forName(driver);
+			Connection conexao = DriverManager.getConnection(url, usuario, senha);
+			PreparedStatement operacao = conexao.prepareStatement(sql);
+			operacao.execute();
+			
+			System.out.println("Animal excluído com sucesso!");
+			conexao.close();
+			operacao.close();
+		}
+		catch(SQLException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
 	}
 }
