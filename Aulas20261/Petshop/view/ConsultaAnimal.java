@@ -49,7 +49,6 @@ public class ConsultaAnimal extends JFrame {
 	 */
 	public ConsultaAnimal() {
 		setTitle("PetSys 1.0");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,13 +97,14 @@ public class ConsultaAnimal extends JFrame {
 		JButton btnNewButton = new JButton("ALTERAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int id = Integer.parseInt(textId.getText());
 				String nome = textNome.getText();
 				String especie = textEspecie.getText();
 				String raca = textRaca.getText();
 				
-				controleAnimal.cadastrarAnimal(nome, especie, raca);
+				controleAnimal.alterarAnimal(id, nome, especie, raca);
 				
-				JOptionPane.showMessageDialog(null, "Animal cadastrado com sucesso!");
+				JOptionPane.showMessageDialog(null, "Animal alterado com sucesso!");
 				
 				textNome.setText("");
 				textEspecie.setText("");
@@ -133,9 +133,17 @@ public class ConsultaAnimal extends JFrame {
 				
 				Animal animal = controleAnimal.consultarAnimal(id);
 				
-				textNome.setText(animal.getNome());
-				textEspecie.setText(animal.getEspecie());
-				textRaca.setText(animal.getRaca());
+				if(animal == null) {
+					JOptionPane.showMessageDialog(null, "Animal não encontrado!");
+					textNome.setText("");
+					textEspecie.setText("");
+					textRaca.setText("");
+				}
+				else {
+					textNome.setText(animal.getNome());
+					textEspecie.setText(animal.getEspecie());
+					textRaca.setText(animal.getRaca());
+				}
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));
@@ -147,6 +155,22 @@ public class ConsultaAnimal extends JFrame {
 		contentPane.add(separator);
 		
 		JButton btnExcluir = new JButton("EXCLUIR");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir o animal?");
+				
+				if(resp == 0) {
+					int id = Integer.parseInt(textId.getText());
+					
+					controleAnimal.excluirAnimal(id);
+										
+					JOptionPane.showMessageDialog(null, "Animal excluído com sucesso!");
+					textNome.setText("");
+					textEspecie.setText("");
+					textRaca.setText("");
+				}
+			}
+		});
 		btnExcluir.setFont(new Font("Arial", Font.BOLD, 16));
 		btnExcluir.setBounds(288, 272, 136, 47);
 		contentPane.add(btnExcluir);
