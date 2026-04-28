@@ -1,10 +1,10 @@
 package modelo;
 
-public class Aluno implements Comparable<Aluno>{
+public class Professor implements Comparable<Professor> {
 	private int matricula;
 	private String nome;
 	
-	public Aluno(int matricula, String nome) {
+	public Professor(int matricula, String nome) {
 		this.matricula = matricula;
 		this.nome = nome;
 	}
@@ -25,12 +25,7 @@ public class Aluno implements Comparable<Aluno>{
 		this.nome = nome;
 	}
 	
-	public int compareTo(Aluno aluno) {
-		if(this.matricula > aluno.getMatricula())
-			return 1;
-		else if(this.matricula < aluno.getMatricula())
-			return -1;
-			
-		return 0;
+	public int compareTo(Professor professor) {
+		return this.nome.compareTo(professor.getNome());
 	}
 }
