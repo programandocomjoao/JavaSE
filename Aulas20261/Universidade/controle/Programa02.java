@@ -2,32 +2,25 @@ package controle;
 
 import java.util.Scanner;
 
-import modelo.Funcionario;
-import modelo.Vendedor;
+import modelo.Avaliacao;
+import modelo.Resultado;
 
 public class Programa02 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		Funcionario funcionario;
-		Vendedor vendedor;
 		
-		System.out.println("CADASTRO DE FUNCIONÁRIO");
-		System.out.print("Nome: ");
+		System.out.println("CÁLCULO DO RESULTADO");
+		System.out.print("Aluno: ");
 		String nome = input.nextLine();
-		System.out.print("Cargo: ");
-		String cargo = input.nextLine();
-		System.out.print("Salário: R$ ");
-		float salario = input.nextFloat();
+		System.out.print("Nota 1: ");
+		float nota1 = input.nextFloat();
+		System.out.print("Nota 2: ");
+		float nota2 = input.nextFloat();
 		
-		if(cargo.compareTo("Vendedor") != 0) {
-			funcionario = new Funcionario(nome, cargo, salario);
-			System.out.print("Salário Líquido: R$" + funcionario.calcularSalario());
-		}
-		else {
-			System.out.print("Comissão: R$ ");
-			float comissao = input.nextFloat();
-			vendedor = new Vendedor(nome, cargo, salario, comissao);
-			System.out.print("Salário Líquido: R$" + vendedor.calcularSalario());
-		}
+		Avaliacao avaliacao = new Avaliacao(nota1, nota2);
+		Resultado resultado = new Resultado(avaliacao);
+		
+		System.out.println("Média: " + resultado.calcularMedia());
+		System.out.print("Situação: " + resultado.situacao);
 	}
 }

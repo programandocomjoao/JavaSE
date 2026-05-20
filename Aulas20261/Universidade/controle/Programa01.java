@@ -2,47 +2,31 @@ package controle;
 
 import java.util.Scanner;
 
-import modelo.PessoaFisica;
-import modelo.PessoaJuridica;
+import modelo.Aluno;
 
 public class Programa01 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		PessoaFisica pf = null;
-		PessoaJuridica pj = null;
+		Aluno aluno;
+		char resposta;
 		
-		System.out.println("CADASTRO DE CLIENTE");
-		System.out.print("CPF/CNPJ: ");
-		String id = input.nextLine();
-		System.out.print("Nome/Razão Social: ");
-		String descricao = input.nextLine();
-		System.out.print("Endereço: ");
-		String endereco = input.nextLine();
-		System.out.print("Whatsapp: ");
-		String whatsapp = input.nextLine();
-				
-		//Cliente cliente = new Cliente(endereco, whatsapp);
-		System.out.print("Digite 1 para PF e 2 para PJ: ");
-		int pessoa = input.nextInt();
+		System.out.println("CADASTRO DE ALUNOS");
+		do {
+			System.out.print("Matrícula: ");
+			String matricula = input.nextLine();
+			System.out.print("Nome: ");
+			String nome = input.nextLine();
+			
+			aluno = new Aluno(matricula, nome);
+			
+			System.out.print("Deseja continuar? <S/N>: ");
+			resposta = input.next().charAt(0);
+			input.nextLine();
+		} while(resposta == 'S' || resposta == 's');
 		
-		switch(pessoa) {
-			case 1: pf = new PessoaFisica(endereco, whatsapp, id, descricao); break;
-			case 2: pj = new PessoaJuridica(endereco, whatsapp, id, descricao);
-		}
-		
-		System.out.println("CLIENTE CADASTRADO");
-		switch(pessoa) {
-			case 1: 
-				System.out.println("CPF: " + pf.formatarId());
-				System.out.println("Nome: " + pf.getNome());
-				System.out.println("Endereço: " + pf.getEndereco());
-				System.out.println("Whatsapp: " + pf.getWhatsapp());
-				break;
-			case 2: 
-				System.out.println("CNPJ: " + pj.formatarId());
-				System.out.println("Razão Social: " + pj.getRazaoSocial());
-				System.out.println("Endereço: " + pj.getEndereco());
-				System.out.println("Whatsapp: " + pj.getWhatsapp());
-		}
+		System.out.println("Foram " + aluno.getCont() + " alunos cadastrados:");
+		for(int i = 0; i < aluno.getCont(); i++)
+			System.out.println(aluno.getAlunos()[i].getMatricula() + " | " +
+					           aluno.getAlunos()[i].getNome());
 	}
 }
