@@ -1,6 +1,6 @@
 package modelo;
 
-public class Cliente {
+public abstract class Cliente {
 	private String endereco, telefone;
 
 	public Cliente(String endereco, String telefone) {
@@ -23,4 +23,16 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	// Abaixo um exemplo de método concreto
+	public String formatarTelefone() {
+		String telFormatado = "(" + telefone.substring(0, 2) + ")" +
+																telefone.substring(2, 7) + "-" +
+																telefone.substring(7, 11);
+		
+		return telFormatado;
+	}
+	
+	// Abaixo um exemplo de método abstrato
+	public abstract String formatarId();
 }
